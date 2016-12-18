@@ -1,0 +1,70 @@
+<header id="header" class="global-nav-var">
+  <div class="pull">
+    <i class="icon_design fa fa-twitter"></i>
+      <div class="pull-right">
+        <div class="dropdown">
+        <a class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">アカウントをお持ちの場合ログイン
+         <span class="caret"></span>
+        </a>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "dropdown-menu", role: "menu", aria: {labelledby: "dropdownMenu1"}}) do |f| %>
+       アカウントをお持ちの場合
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "off" %>
+        </div>
+
+        <% if devise_mapping.rememberable? -%>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end -%>
+
+        <div class="actions">
+          <%= f.submit "Log in" %>
+        </div>
+      <% end %>
+        </div>
+    </div>
+  </div>
+</header>
+
+<div class="make_account">
+  <h2>Twitterを使ってみよう</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+    <div class="field">
+        <%= f.text_field :nickname, placeholder: "呼び名（ニックネームも可）", class: "input_form", autofocus: true %>
+      </div>
+
+    <br>
+      <div class="field">
+        <%= f.email_field :email, placeholder: "メールアドレスだよ", class: "input_form",autofocus: true %>
+      </div>
+    <br>
+
+      <div class="field">
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, placeholder: "パスワードね", class: "input_form", autocomplete: "off" %>
+      </div>
+    <br>
+
+      <div class="field">
+        <%= f.password_field :password_confirmation, placeholder: "パスワード確認するよ", class: "input_form",autocomplete: "off" %>
+      </div>
+    <br>
+
+      <div class="actions">
+      <center><%= f.submit "アカウント作成", class: "btn btn-primary input_form" %></center>
+      </div>
+    <% end %>
+</div>
+
